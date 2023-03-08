@@ -5,7 +5,6 @@ import CountriesCard from "./CountriesCard";
 
 function Records () {
     const [ allCountries, setAllCountries ] = useState( [] );
-    const [ reload, setReload ] = useState( false );
     const getRecords = () => {
         axios.get( `${process.env.REACT_APP_BACKEND_URL}/records` )
             .then( res => {
@@ -15,9 +14,12 @@ function Records () {
                 console.log( err );
             } );
     };
+    const handleDeleteFilter = ( id ) => {
+        setAllCountries( allCountries.filter( ( country ) => country.id !== id ) );
+    }
     useEffect( () => {
         getRecords();
-    }, [reload] );
+    }, [] );
     return (
         allCountries.length > 0 ? (
             <Container
@@ -36,8 +38,7 @@ function Records () {
                                         `Date: ${country.date}`
                                     }
                                     id={country.id}
-                                    setReload={setReload}
-                                    reload={reload}
+                                    handleDeleteFilter={handleDeleteFilter}
                                 />
                             </Col>
                         );
