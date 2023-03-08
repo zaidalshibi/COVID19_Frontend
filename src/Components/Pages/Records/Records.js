@@ -25,7 +25,7 @@ function Records () {
                 style={{ minHeight: '50vh' }}
             >
                 <Row className="g-5">
-                    {records.map( ( country, index ) => {
+                    {records && records.map( ( country, index ) => {
                         return (
                             <Col key={index}>
                                 <CountriesCard
@@ -40,12 +40,11 @@ function Records () {
                             </Col>
                         );
                     } )}
-                </Row>
-            </Container>
-
             {records?.length === 0 && (
                 <h1 style={{ color: "#FD0072" }}>No Available Records ˉ\_(ッ)_/ˉ </h1>
             )}
+                </Row>
+            </Container>
         </div>
     );
 }
