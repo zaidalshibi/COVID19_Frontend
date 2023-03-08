@@ -15,7 +15,7 @@ function Records () {
             } );
     };
     const handleDeleteFilter = ( id ) => {
-        setAllCountries( allCountries.filter( ( country ) => country.id !== id ) );
+        setAllCountries( allCountries.filter( ( country ) => country.id != id ) );
     }
     useEffect( () => {
         getRecords();
