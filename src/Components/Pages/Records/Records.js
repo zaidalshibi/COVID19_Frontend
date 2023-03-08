@@ -5,6 +5,7 @@ import CountriesCard from "./CountriesCard";
 
 function Records () {
     const [ allCountries, setAllCountries ] = useState( [] );
+    const [ reload, setReload ] = useState( false );
     const getRecords = () => {
         axios.get( `${process.env.REACT_APP_BACKEND_URL}/records` )
             .then( res => {
@@ -16,7 +17,7 @@ function Records () {
     };
     useEffect( () => {
         getRecords();
-    }, [] );
+    }, [reload] );
     return (
         allCountries.length > 0 ? (
             <Container
@@ -35,7 +36,8 @@ function Records () {
                                         `Date: ${country.date}`
                                     }
                                     id={country.id}
-                                    getRecords={getRecords}
+                                    setReload={setReload}
+                                    reload={reload}
                                 />
                             </Col>
                         );

@@ -4,13 +4,13 @@ import { Button, Dropdown } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Swal from 'sweetalert2';
 
-function CountriesCard ( { title, text, id, getRecords } ) {
+function CountriesCard ( { title, text, id, setReload, reload } ) {
     const [ deleteRecord, setDeleteRecord ] = useState( false );
     const handleDelete = () => {
         axios.delete( `${process.env.REACT_APP_BACKEND_URL}/records/${id}` )
             .then( res => {
                 setDeleteRecord( !deleteRecord );
-                getRecords();
+                setReload( !reload );
                 Swal.fire( {
                     icon: 'success',
                     title: 'Deleted from your records',
